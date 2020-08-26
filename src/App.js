@@ -5,29 +5,20 @@ import "bootstrap/dist/css/bootstrap.css"
 import MessageForm from "./components/MessageForm"
 import MessageList from "./components/MessageList"
 
-const chatRoomData = {
-	name: "The Local Lounge",
-	messages: {
-		dsadsdsadsa1: {
-			message: "Hej 1",
-		},
-		dsadsdsadsa2: {
-			message: "Hej 2",
-		},
-		dsadsdsadsa3: {
-			message: "Hej 3",
-		},
-		dsadsdsadsa4: {
-			message: "Hej 4",
-		},
-		dsadsdsadsa5: {
-			message: "Hej 5",
-		},
-		dsadsdsads6: {
-			message: "Hej 6",
-		},
-	},
-}
+// const chatRoomData = {
+// 	name: "The Local Lounge",
+// 	messages: {
+// 		dsadsdsadsa1: {
+// 			message: "Hej 1",
+// 		},
+// 		dsadsdsadsa2: {
+// 			message: "Hej 2",
+// 		},
+// 		dsadsdsadsa3: {
+// 			message: "Hej 3",
+// 		},
+// 	},
+// }
 
 function App() {
 	const [counter, setCounter] = useState(0)
@@ -35,20 +26,17 @@ function App() {
 	//Defaultvärdet i useState sätts till förväntad variabeltyp (objekt, array, siffra eller sträng)
 
 	function handleGetChatRoom() {
-		console.log("1")
+		console.log("handleGetChatRoom körs")
 		//Fetch är en funktion(ett promise) som är inbyggd i nya version av JS.Fetchen hämtar api:et
 		const url =
 			"https://mock-data-api.firebaseio.com/chatrooms/-MFZumveIpHH5D_gkUHJ.json"
 		fetch(url)
 			.then((response) => {
-				console.log("2")
 				return response.json()
 			})
 			.then((data) => {
-				console.log("4")
 				setChatRoomData(data)
 			})
-		console.log("3")
 	}
 
 	//useEffect: hämta data från extern källa direkt när sidan laddas
@@ -76,6 +64,7 @@ function App() {
 
 			<div className="row">
 				<div className="col-md-12">
+					{/* handleOnSuccess, label, placeholder är props som vi skickar med till komponenten MessageForm. */}
 					<MessageForm
 						handleOnSuccess={handleGetChatRoom}
 						label="Enter your message"
